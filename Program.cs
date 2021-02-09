@@ -8,7 +8,7 @@ namespace AlgorithmDemosFeb2021
         {
             Console.WriteLine("Algorithm Tetst");
 
-
+            testRansomNote();
             Console.ReadKey();
         }
 
@@ -16,7 +16,10 @@ namespace AlgorithmDemosFeb2021
         public static void testRansomNote()
         {
             string[] magazine = new string[] { "give", "me", "one", "grand", "today", "night" };
-            string[] note = new string[] { };
+            string[] note = new string[] { "give", "one", "grand", "today" };
+
+            RansomNote ransomCreator = new RansomNote();
+            ransomCreator.checkMagazine(magazine, note);
 
         }
     }

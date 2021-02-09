@@ -18,11 +18,14 @@ namespace AlgorithmDemosFeb2021
 
             foreach(var word in note)
             {
-                if (magazine.Contains(word) )
+                if (magazine.Contains(word))
                 {
                     ransomNote.Add(word);
                 }
             }
+
+
+            ransomNote.ToList().ForEach(x => Console.WriteLine($"Word Found { x }"));
 
 
 
