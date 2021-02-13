@@ -28,7 +28,7 @@ namespace AlgorithmDemosFeb2021
             Console.WriteLine("Test 2");
             found = false;
             magazine = new string[] { "two", "times", "three", "is", "not", "four" };
-            note = new string[] { "two", "times","two", "is", "four" };
+            note = new string[] { "two", "times", "two", "is", "four" };
             ransomCreator.checkMagazine(magazine, note);
             Console.WriteLine($"ransome note created : {found }");
 

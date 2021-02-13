@@ -17,17 +17,23 @@ namespace AlgorithmDemosFeb2021
         {
 
             Hashtable ransomNote = new Hashtable();
+            List<string> sortedNote = note.ToList();
+            sortedNote.Sort();
+            List<string> sortedMagazine = magazine.ToList();
+            sortedMagazine.Sort();
 
-            foreach (var word in note)
+            foreach (var word in sortedNote)
             {
-                int wordIndex = Array.IndexOf(magazine, word);
+                int wordIndex = Array.BinarySearch(sortedMagazine.ToArray(), word);
                 //check if index is in hashtable
                 while (ransomNote.ContainsKey(wordIndex))
                 {
-                    wordIndex = Array.IndexOf(magazine, word, wordIndex + 1);
+                    int lengthOfRange = sortedMagazine.ToArray().Length - wordIndex - 1;
+                    int startIndex = wordIndex + 1 ;
+                    wordIndex = Array.BinarySearch(sortedMagazine.ToArray(), startIndex,lengthOfRange ,word);
                 }
 
-                if (wordIndex > -1 && word.Equals(magazine[wordIndex]))
+                if (wordIndex > -1 && word.Equals(sortedMagazine[wordIndex]))
                 {                  
                         ransomNote.Add(wordIndex, word);                  
                 }
@@ -35,9 +41,6 @@ namespace AlgorithmDemosFeb2021
 
             var foundValues = new string[ransomNote.Values.Count];
             ransomNote.Values.CopyTo(foundValues, 0);  
-            
-            var sortedNote = note.ToList();
-            sortedNote.Sort();
 
             var sortedFoundValues = foundValues.ToList();
             sortedFoundValues.Sort();
