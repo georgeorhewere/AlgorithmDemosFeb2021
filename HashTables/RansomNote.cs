@@ -17,6 +17,7 @@ namespace AlgorithmDemosFeb2021
         {
 
             Hashtable ransomNote = new Hashtable();
+            
             List<string> sortedNote = note.ToList();
             sortedNote.Sort();
             List<string> sortedMagazine = magazine.ToList();
@@ -26,8 +27,8 @@ namespace AlgorithmDemosFeb2021
 
             foreach (var word in sortedNote)
             {
-                var wordListInMagagzine = Array.FindAll(sortedMagazine.ToArray(), x=> x.Equals(word));
-                wordListInMagagzine.ToList().ForEach(x => Console.WriteLine($"item {x} at {sortedMagazine.IndexOf(x)}"));
+                //var wordListInMagagzine = Array.FindAll(sortedMagazine.ToArray(), x=> x.Equals(word));
+                //wordListInMagagzine.ToList().ForEach(x => Console.WriteLine($"item {x} at {sortedMagazine.IndexOf(x)}"));
                 
                 
                 int wordIndex = Array.BinarySearch(sortedMagazine.ToArray(), word);

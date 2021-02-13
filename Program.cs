@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace AlgorithmDemosFeb2021
 {
@@ -8,8 +9,10 @@ namespace AlgorithmDemosFeb2021
         {
             Console.WriteLine("Algorithm Tetst");
 
-            testRansomNote();
+            //testRansomNote();
+            readRansomFromFile();
             Console.ReadKey();
+
         }
 
 
@@ -31,6 +34,20 @@ namespace AlgorithmDemosFeb2021
             note = new string[] { "two", "times", "two", "is", "four" };
             ransomCreator.checkMagazine(magazine, note);
             Console.WriteLine($"ransome note created : {found }");
+
+        }
+
+        public static void readRansomFromFile()
+        {
+            IEnumerable<string> text = System.IO.File.ReadLines(@"F:\Training\Algorithms\Hackerrank\ctci-ransom\input\input19.txt");
+            List<string> input = new List<string>(text);
+            RansomNote ransomCreator = new RansomNote();
+            var found = ransomCreator.checkMagazine(input[1].Split(' '), input[2].Split(' '));
+
+            Console.WriteLine($"ransome note created : {found }");
+
+            Console.WriteLine(input.Count);
+
 
         }
     }
