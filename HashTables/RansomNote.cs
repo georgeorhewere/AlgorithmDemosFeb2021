@@ -27,7 +27,6 @@ namespace AlgorithmDemosFeb2021
                     wordIndex = Array.IndexOf(magazine, word, wordIndex + 1);
                 }
 
-
                 if (wordIndex > -1 && word.Equals(magazine[wordIndex]))
                 {                  
                         ransomNote.Add(wordIndex, word);                  
@@ -35,9 +34,18 @@ namespace AlgorithmDemosFeb2021
             }
 
             var foundValues = new string[ransomNote.Values.Count];
-            ransomNote.Values.CopyTo(foundValues, 0);
+            ransomNote.Values.CopyTo(foundValues, 0);          
 
-            foundValues.ToList().ForEach(x => Console.WriteLine($"Word Found { x }"));
+            
+            
+            var sortedNote = note.ToList();
+            sortedNote.Sort();
+            var sortedFoundValues = foundValues.ToList();
+            sortedFoundValues.Sort();
+            var isFound = sortedFoundValues.SequenceEqual(sortedNote);
+
+
+            Console.WriteLine($"Ransom note created : { isFound}");
 
 
 
