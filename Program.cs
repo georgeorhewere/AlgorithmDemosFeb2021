@@ -20,6 +20,11 @@ namespace AlgorithmDemosFeb2021
 
             RansomNote ransomCreator = new RansomNote();
             ransomCreator.checkMagazine(magazine, note);
+            Console.WriteLine();
+            Console.WriteLine("Test 2");
+            magazine = new string[] { "two", "times", "three", "is", "not", "four" };
+            note = new string[] { "two", "times","two", "is", "four" };
+            ransomCreator.checkMagazine(magazine, note);
 
         }
     }

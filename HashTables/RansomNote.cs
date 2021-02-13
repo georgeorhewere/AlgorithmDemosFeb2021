@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Linq;
+using System.Collections;
 
 namespace AlgorithmDemosFeb2021
 {
@@ -12,20 +13,31 @@ namespace AlgorithmDemosFeb2021
 
         }
 
-        public  void checkMagazine(string[] magazine, string[] note)
+        public void checkMagazine(string[] magazine, string[] note)
         {
-            HashSet<string> ransomNote = new HashSet<string>();
 
-            foreach(var word in note)
+            Hashtable ransomNote = new Hashtable();
+
+            foreach (var word in note)
             {
-                if (magazine.Contains(word))
+                int wordIndex = Array.IndexOf(magazine, word);
+                //check if index is in hashtable
+                while (ransomNote.ContainsKey(wordIndex))
                 {
-                    ransomNote.Add(word);
+                    wordIndex = Array.IndexOf(magazine, word, wordIndex + 1);
+                }
+
+
+                if (wordIndex > -1 && word.Equals(magazine[wordIndex]))
+                {                  
+                        ransomNote.Add(wordIndex, word);                  
                 }
             }
 
+            var foundValues = new string[ransomNote.Values.Count];
+            ransomNote.Values.CopyTo(foundValues, 0);
 
-            ransomNote.ToList().ForEach(x => Console.WriteLine($"Word Found { x }"));
+            foundValues.ToList().ForEach(x => Console.WriteLine($"Word Found { x }"));
 
 
 
