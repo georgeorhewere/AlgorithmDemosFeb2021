@@ -17,14 +17,20 @@ namespace AlgorithmDemosFeb2021
         {
             string[] magazine = new string[] { "give", "me", "one", "grand", "today", "night" };
             string[] note = new string[] { "give", "one", "grand", "today" };
+            bool found = false;
 
             RansomNote ransomCreator = new RansomNote();
-            ransomCreator.checkMagazine(magazine, note);
+            found = ransomCreator.checkMagazine(magazine, note);
+
+            Console.WriteLine($"ransome note created : {found }");
+
             Console.WriteLine();
             Console.WriteLine("Test 2");
+            found = false;
             magazine = new string[] { "two", "times", "three", "is", "not", "four" };
             note = new string[] { "two", "times","two", "is", "four" };
             ransomCreator.checkMagazine(magazine, note);
+            Console.WriteLine($"ransome note created : {found }");
 
         }
     }

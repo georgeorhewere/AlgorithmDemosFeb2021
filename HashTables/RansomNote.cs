@@ -13,7 +13,7 @@ namespace AlgorithmDemosFeb2021
 
         }
 
-        public void checkMagazine(string[] magazine, string[] note)
+        public bool checkMagazine(string[] magazine, string[] note)
         {
 
             Hashtable ransomNote = new Hashtable();
@@ -34,20 +34,15 @@ namespace AlgorithmDemosFeb2021
             }
 
             var foundValues = new string[ransomNote.Values.Count];
-            ransomNote.Values.CopyTo(foundValues, 0);          
-
-            
+            ransomNote.Values.CopyTo(foundValues, 0);  
             
             var sortedNote = note.ToList();
             sortedNote.Sort();
+
             var sortedFoundValues = foundValues.ToList();
             sortedFoundValues.Sort();
-            var isFound = sortedFoundValues.SequenceEqual(sortedNote);
 
-
-            Console.WriteLine($"Ransom note created : { isFound}");
-
-
+             return sortedFoundValues.SequenceEqual(sortedNote);
 
         }
 
