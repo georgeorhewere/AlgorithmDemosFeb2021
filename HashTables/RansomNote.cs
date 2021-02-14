@@ -67,15 +67,11 @@ namespace AlgorithmDemosFeb2021
 
         public bool checkMagazine2(string[] magazine, string[] note)
         {
-            Hashtable ransomNote = new Hashtable();
 
-            List<string> sortedNote = note.ToList();
-            sortedNote.Sort();
-            List<string> sortedMagazine = magazine.ToList();
-            sortedMagazine.Sort();
+
 
             //get items not available in the magazine list
-            var exceptItems = sortedNote.Except(sortedMagazine).ToList();
+            var exceptItems = note.Except(magazine).ToList();
             
             if (exceptItems.Any())
             {
@@ -87,8 +83,8 @@ namespace AlgorithmDemosFeb2021
                 Console.WriteLine("Process note");
                 bool isProperlyFormedNote = false;
                 // checked intersection to determine the instances available
-                var commonItems = sortedMagazine.Intersect(sortedNote).ToList();
-                if (commonItems.Count.Equals(sortedNote.Count))
+                var commonItems = magazine.Intersect(note).ToList();
+                if (commonItems.Count.Equals(note.Count()))
                 {
                     isProperlyFormedNote = true;
                 }
@@ -96,13 +92,13 @@ namespace AlgorithmDemosFeb2021
                 {
                     // check duplicate items in list 
                     Console.WriteLine("Check duplicate items in note");
-                    var distinctItems = sortedNote.Distinct();
-                    var itemsWithMoreThanOneInstance = sortedNote.Where(x => sortedNote.FindAll(t => t.Equals(x)).Count > 1).ToList();                    
+                    var distinctItems = note.Distinct();
+                    var itemsWithMoreThanOneInstance = note.Where(x => note.ToList().FindAll(t => t.Equals(x)).Count > 1).ToList();                    
                     
 
                     foreach(var item in itemsWithMoreThanOneInstance.Distinct())
                     {
-                        int itemCountInMagazine = sortedMagazine.FindAll(word => word.Equals(item)).Count;
+                        int itemCountInMagazine = magazine.ToList().FindAll(word => word.Equals(item)).Count;
                         if ( itemCountInMagazine > 1)
                         {
                             int itemCountInNote = itemsWithMoreThanOneInstance.FindAll(c => c.Equals(item)).Count;
