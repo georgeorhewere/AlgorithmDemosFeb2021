@@ -9,7 +9,7 @@ namespace AlgorithmDemosFeb2021
         {
             Console.WriteLine("Algorithm Tetst");
 
-            //testRansomNote();
+            testRansomNote();
             readRansomFromFile();
             Console.ReadKey();
 
@@ -23,7 +23,7 @@ namespace AlgorithmDemosFeb2021
             bool found = false;
 
             RansomNote ransomCreator = new RansomNote();
-            found = ransomCreator.checkMagazine(magazine, note);
+            found = ransomCreator.checkMagazine2(magazine, note);
 
             Console.WriteLine($"ransome note created : {found }");
 
@@ -32,7 +32,7 @@ namespace AlgorithmDemosFeb2021
             found = false;
             magazine = new string[] { "two", "times", "three", "is", "not", "four" };
             note = new string[] { "two", "times", "two", "is", "four" };
-            ransomCreator.checkMagazine(magazine, note);
+            ransomCreator.checkMagazine2(magazine, note);
             Console.WriteLine($"ransome note created : {found }");
 
         }
@@ -42,7 +42,7 @@ namespace AlgorithmDemosFeb2021
             IEnumerable<string> text = System.IO.File.ReadLines(@"F:\Training\Algorithms\Hackerrank\ctci-ransom\input\input19.txt");
             List<string> input = new List<string>(text);
             RansomNote ransomCreator = new RansomNote();
-            var found = ransomCreator.checkMagazine(input[1].Split(' '), input[2].Split(' '));
+            var found = ransomCreator.checkMagazine2(input[1].Split(' '), input[2].Split(' '));
 
             Console.WriteLine($"ransome note created : {found }");
 
