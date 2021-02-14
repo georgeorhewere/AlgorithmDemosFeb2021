@@ -79,23 +79,51 @@ namespace AlgorithmDemosFeb2021
             
             if (exceptItems.Any())
             {
-                Console.WriteLine("Cann0t form note");
+                Console.WriteLine("Cannot form note");
                 return false;
             }
             else
             {
                 Console.WriteLine("Process note");
+                bool isProperlyFormedNote = false;
                 // checked intersection to determine the instances available
                 var commonItems = sortedMagazine.Intersect(sortedNote).ToList();
+                if (commonItems.Count.Equals(sortedNote.Count))
+                {
+                    isProperlyFormedNote = true;
+                }
+                else
+                {
+                    // check duplicate items in list 
+                    Console.WriteLine("Check duplicate items in note");
+                    var distinctItems = sortedNote.Distinct();
+                    var itemsWithMoreThanOneInstance = sortedNote.Where(x => sortedNote.FindAll(t => t.Equals(x)).Count > 1).ToList();                    
+                    
 
+                    foreach(var item in itemsWithMoreThanOneInstance.Distinct())
+                    {
+                        int itemCountInMagazine = sortedMagazine.FindAll(word => word.Equals(item)).Count;
+                        if ( itemCountInMagazine > 1)
+                        {
+                            int itemCountInNote = itemsWithMoreThanOneInstance.FindAll(c => c.Equals(item)).Count;
+                            isProperlyFormedNote = itemCountInMagazine >= itemCountInNote;
+                            Console.WriteLine($"Find {itemsWithMoreThanOneInstance.FindAll(c=> c.Equals(item)).Count } instance count of { item } in magazine");
+                            if (!isProperlyFormedNote)
+                                break;
 
+                        }
+                        else
+                        {
+                            isProperlyFormedNote = false;
+                            break;
+                        }
+                    }
+                    
+                }
 
-                return false;
+                return isProperlyFormedNote;                
 
             }
-
-
-
            
 
         }
