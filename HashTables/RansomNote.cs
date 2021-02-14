@@ -67,9 +67,6 @@ namespace AlgorithmDemosFeb2021
 
         public bool checkMagazine2(string[] magazine, string[] note)
         {
-
-
-
             //get items not available in the magazine list
             var exceptItems = note.Except(magazine).ToList();
             
@@ -92,11 +89,17 @@ namespace AlgorithmDemosFeb2021
                 {
                     // check duplicate items in list 
                     Console.WriteLine("Check duplicate items in note");
-                    var distinctItems = note.Distinct();
-                    var itemsWithMoreThanOneInstance = note.Where(x => note.ToList().FindAll(t => t.Equals(x)).Count > 1).ToList();                    
-                    
+                    var watch = new System.Diagnostics.Stopwatch();
+                    watch.Start();
+                    var itemsWithMoreThanOneInstance = note.Where(x => note.ToList().FindAll(t => t.Equals(x)).Count > 1).ToList();
+                    watch.Stop();
+                    Console.WriteLine($"time taken to find instances {watch.ElapsedMilliseconds }");
 
-                    foreach(var item in itemsWithMoreThanOneInstance.Distinct())
+                    watch.Reset();
+
+                    Console.WriteLine($"Distinct Item Count {itemsWithMoreThanOneInstance.Distinct().Count()}");
+                    watch.Start();
+                    foreach (var item in itemsWithMoreThanOneInstance.Distinct())
                     {
                         int itemCountInMagazine = magazine.ToList().FindAll(word => word.Equals(item)).Count;
                         if ( itemCountInMagazine > 1)
@@ -114,7 +117,9 @@ namespace AlgorithmDemosFeb2021
                             break;
                         }
                     }
-                    
+                    watch.Stop();
+                    Console.WriteLine($"time taken to determine properly formed note  {watch.ElapsedMilliseconds }");
+
                 }
 
                 return isProperlyFormedNote;                
