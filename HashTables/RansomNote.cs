@@ -90,23 +90,29 @@ namespace AlgorithmDemosFeb2021
                     // check duplicate items in list 
                     Console.WriteLine("Check duplicate items in note");
                     var watch = new System.Diagnostics.Stopwatch();
-                    watch.Start();
-                    var itemsWithMoreThanOneInstance = note.Where(x => note.ToList().FindAll(t => t.Equals(x)).Count > 1).ToList();
-                    watch.Stop();
-                    Console.WriteLine($"time taken to find instances {watch.ElapsedMilliseconds }");
-
+                    //watch.Start();
+                    //var itemsWithMoreThanOneInstance = note.Where(x => note.ToList().FindAll(t => t.Equals(x)).Count > 1).ToList();
+                    //watch.Stop();
+                    Console.WriteLine($"time taken to find instances where {watch.ElapsedMilliseconds }");
                     watch.Reset();
 
-                    Console.WriteLine($"Distinct Item Count {itemsWithMoreThanOneInstance.Distinct().Count()}");
                     watch.Start();
-                    foreach (var item in itemsWithMoreThanOneInstance.Distinct())
+                    var itemsWithMoreThanOneInstanceLinq = note.GroupBy(x => x).Where(g => g.Count() > 1).ToDictionary(x => x.Key, y => y.Count());
+                    watch.Stop();
+
+                    Console.WriteLine($"time taken to find instances Linq {watch.ElapsedMilliseconds }");
+                    watch.Reset();
+
+                   // Console.WriteLine($"Distinct Item Count {itemsWithMoreThanOneInstance.Distinct().Count()}");
+                    watch.Start();
+                    foreach (var item in itemsWithMoreThanOneInstanceLinq)
                     {
-                        int itemCountInMagazine = magazine.ToList().FindAll(word => word.Equals(item)).Count;
+                        int itemCountInMagazine = magazine.ToList().FindAll(word => word.Equals(item.Key)).Count;
+                        //magazine.Where(x => x.Equals(item.Key)).Count();
                         if ( itemCountInMagazine > 1)
-                        {
-                            int itemCountInNote = itemsWithMoreThanOneInstance.FindAll(c => c.Equals(item)).Count;
-                            isProperlyFormedNote = itemCountInMagazine >= itemCountInNote;
-                            Console.WriteLine($"Find {itemsWithMoreThanOneInstance.FindAll(c=> c.Equals(item)).Count } instance count of { item } in magazine");
+                        {                            
+                            isProperlyFormedNote = itemCountInMagazine >= item.Value;
+                            Console.WriteLine($"Find {item.Value } instance count of { item } in magazine");
                             if (!isProperlyFormedNote)
                                 break;
 

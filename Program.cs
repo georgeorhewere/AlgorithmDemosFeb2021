@@ -9,7 +9,7 @@ namespace AlgorithmDemosFeb2021
         {
             Console.WriteLine("Algorithm Tetst");
 
-            testRansomNote();
+            //testRansomNote();
             readRansomFromFile();
             Console.ReadKey();
 
