@@ -8,9 +8,9 @@ namespace AlgorithmDemosFeb2021
         static void Main(string[] args)
         {
             Console.WriteLine("Algorithm Tetst");
-
+            testAnagramsAlgorithm();
             //testRansomNote();
-            readRansomFromFile();
+            //readRansomFromFile();
             Console.ReadKey();
 
         }
@@ -47,6 +47,16 @@ namespace AlgorithmDemosFeb2021
             Console.WriteLine($"ransome note created : {found }");
 
             Console.WriteLine(input.Count);
+
+
+        }
+
+
+        public static void testAnagramsAlgorithm()
+        {
+            SubStringsSearch manager = new SubStringsSearch();
+            string inputWord = "abba";
+            manager.getNumberOfAnagrams(inputWord);
 
 
         }

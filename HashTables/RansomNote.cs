@@ -115,7 +115,6 @@ namespace AlgorithmDemosFeb2021
                             Console.WriteLine($"Find {item.Value } instance count of { item } in magazine");
                             if (!isProperlyFormedNote)
                                 break;
-
                         }
                         else
                         {
