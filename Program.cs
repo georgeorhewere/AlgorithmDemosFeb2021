@@ -57,6 +57,11 @@ namespace AlgorithmDemosFeb2021
             SubStringsSearch manager = new SubStringsSearch();
             string inputWord = "abba";
             manager.getNumberOfAnagrams(inputWord);
+            Console.WriteLine();
+            inputWord = "abcd";
+            manager.getNumberOfAnagrams(inputWord);
+
+
 
 
         }
