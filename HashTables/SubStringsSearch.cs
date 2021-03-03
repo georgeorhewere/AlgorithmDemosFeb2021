@@ -19,47 +19,38 @@ namespace AlgorithmDemosFeb2021
         {
 
             var wordArray = inputWord.ToCharArray();
-
             var duplicateChars = wordArray.GroupBy(x => x).Where(g => g.Count() > 1);
+            int count = 0;
+
             // check if there is possibility of an anagram
-            int anagramCount = 0;
+            //int anagramCount = 0;
+            Console.WriteLine($"input : { inputWord }");
 
-            if (duplicateChars.Any())
+            for (int i = 1; i < inputWord.Length; i++)
             {
-
-                // get length of half the string
-                int inputMidpoint = (int)Math.Ceiling((double)wordArray.Length / 2) + 1;
-                Console.WriteLine($"mid point of string { inputMidpoint }");
-             
-                for (int x = 0; x < inputMidpoint; x++)
+                Dictionary<string, int> found = new Dictionary<string, int>();
+                // Starting index of our sliding window
+                for (int j = 0; j + i <= inputWord.Length; j++)
                 {
-                    int wordLength = x + 1;
-                    var substring = wordArray.Take(wordLength);
-                    if (wordLength != 1)
+                    string substr = inputWord.Substring(j, i);
+                    var splitArr = substr.Split("");
+                    Array.Sort(splitArr);
+                    substr = string.Join("", splitArr);
+                    if (found.ContainsKey(substr))
                     {
-                        Console.WriteLine($" substring instance { string.Join("", substring) }");
-                        // check for anagram
-                        var anagram = wordArray.Skip(wordLength);
-                        Console.WriteLine($" anagram container to check { string.Join("", anagram) }");
-                        // use set operations to check 
-                        var intersect = anagram.Intersect(substring);
-                        if (intersect.Any())
-                            anagramCount++;
+                        count += found[substr];
+                        found[substr]++;
+                    }
+                    else
+                    {
+                        found.Add(substr, 1);
                     }
                 }
 
-                //process duplicate characters    
-                anagramCount = anagramCount + duplicateChars.Count();
-                duplicateChars.ToList().ForEach(x => Console.WriteLine($"Duplicates { x.Key }"));
-                //Console.WriteLine($" duplicate count {  duplicateChars.Count() }");
-
-
-
-
+                Console.WriteLine($"");
             }
 
-
-            Console.WriteLine($" anagram count { anagramCount }");
+            Console.WriteLine($" anagram count { count }");
 
 
         }

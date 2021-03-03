@@ -60,8 +60,10 @@ namespace AlgorithmDemosFeb2021
             Console.WriteLine();
             inputWord = "abcd";
             manager.getNumberOfAnagrams(inputWord);
-
-
+            Console.WriteLine();
+            inputWord = "kkkk";
+            manager.getNumberOfAnagrams(inputWord);
+            
 
 
         }
