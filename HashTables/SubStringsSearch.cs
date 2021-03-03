@@ -19,44 +19,39 @@ namespace AlgorithmDemosFeb2021
         {
 
             var wordArray = inputWord.ToCharArray();
-            // get length of half the string
 
-            int inputMidpoint = (int)Math.Ceiling((double)wordArray.Length / 2);
-            Console.WriteLine($"mid point of string { inputMidpoint }");
-           
-            for(int x = 0; x < inputMidpoint; x++)
+            var duplicateChars = wordArray.GroupBy(x => x).Where(g => g.Count() > 1);
+            // check if there is possibility of an anagram
+            int anagramCount = 0;
+
+            if (duplicateChars.Any())
             {
-                int wordLength = x + 1;
-                var substring = wordArray.Take(wordLength);
-                Console.WriteLine($" substring instance { string.Join("",substring) }");
-                // check for anagram
-                var anagram = wordArray.Skip(wordLength);
-                Console.WriteLine($" anagram container to check { string.Join("", anagram) }");
-                // use set operations to check 
-                var intersect = wordArray.Intersect(substring);
-                Console.WriteLine($" anagram intersction check { string.Join(",", intersect) }");
 
+                // get length of half the string
+                int inputMidpoint = (int)Math.Ceiling((double)wordArray.Length / 2);
+                Console.WriteLine($"mid point of string { inputMidpoint }");
+             
+                for (int x = 0; x < inputMidpoint; x++)
+                {
+                    int wordLength = x + 1;
+                    var substring = wordArray.Take(wordLength);
+                    Console.WriteLine($" substring instance { string.Join("", substring) }");
+                    // check for anagram
+                    var anagram = wordArray.Skip(wordLength);
+                    Console.WriteLine($" anagram container to check { string.Join("", anagram) }");
+                    // use set operations to check 
+                    var intersect = anagram.Intersect(substring);
+                    if (intersect.Any())
+                        anagramCount++;
+                }
 
+                //process duplicate characters
+                duplicateChars.ToList().ForEach(x => Console.WriteLine($"Duplicates { x.Key }"));
+                //Console.WriteLine($" duplicate count {  }");
             }
 
 
-
-            //var anagramCharList = wordArray.GroupBy(x => x)
-            //                            .Where(g => g.Count() > 1)
-            //                            .ToList();
-            //if (anagramCharList.Any())
-            //{
-            //    Console.WriteLine($"Found  possible anagrams for {inputWord}");
-            //    anagramCharList.ForEach(x => Console.WriteLine($"{x.Key.ToString()} - {x.Count()}"));
-            //}
-            //else
-            //{
-            //    Console.WriteLine($"No anagrams for {inputWord}");
-            //}
-
-
-            //
-
+            Console.WriteLine($" anagram count { anagramCount }");
 
 
         }
