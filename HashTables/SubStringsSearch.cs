@@ -28,7 +28,7 @@ namespace AlgorithmDemosFeb2021
             {
 
                 // get length of half the string
-                int inputMidpoint = (int)Math.Ceiling((double)wordArray.Length / 2);
+                int inputMidpoint = (int)Math.Ceiling((double)wordArray.Length / 2) + 1;
                 Console.WriteLine($"mid point of string { inputMidpoint }");
              
                 for (int x = 0; x < inputMidpoint; x++)
@@ -48,9 +48,10 @@ namespace AlgorithmDemosFeb2021
                     }
                 }
 
-                //process duplicate characters                
+                //process duplicate characters    
+                anagramCount = anagramCount + duplicateChars.Count();
                 duplicateChars.ToList().ForEach(x => Console.WriteLine($"Duplicates { x.Key }"));
-                Console.WriteLine($" duplicate count {  duplicateChars.Count() }");
+                //Console.WriteLine($" duplicate count {  duplicateChars.Count() }");
 
 
 
