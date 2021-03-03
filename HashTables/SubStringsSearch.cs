@@ -35,19 +35,26 @@ namespace AlgorithmDemosFeb2021
                 {
                     int wordLength = x + 1;
                     var substring = wordArray.Take(wordLength);
-                    Console.WriteLine($" substring instance { string.Join("", substring) }");
-                    // check for anagram
-                    var anagram = wordArray.Skip(wordLength);
-                    Console.WriteLine($" anagram container to check { string.Join("", anagram) }");
-                    // use set operations to check 
-                    var intersect = anagram.Intersect(substring);
-                    if (intersect.Any())
-                        anagramCount++;
+                    if (wordLength != 1)
+                    {
+                        Console.WriteLine($" substring instance { string.Join("", substring) }");
+                        // check for anagram
+                        var anagram = wordArray.Skip(wordLength);
+                        Console.WriteLine($" anagram container to check { string.Join("", anagram) }");
+                        // use set operations to check 
+                        var intersect = anagram.Intersect(substring);
+                        if (intersect.Any())
+                            anagramCount++;
+                    }
                 }
 
-                //process duplicate characters
+                //process duplicate characters                
                 duplicateChars.ToList().ForEach(x => Console.WriteLine($"Duplicates { x.Key }"));
-                //Console.WriteLine($" duplicate count {  }");
+                Console.WriteLine($" duplicate count {  duplicateChars.Count() }");
+
+
+
+
             }
 
 
