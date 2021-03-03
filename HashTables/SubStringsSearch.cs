@@ -19,25 +19,46 @@ namespace AlgorithmDemosFeb2021
         {
 
             var wordArray = inputWord.ToCharArray();
+            // get length of half the string
 
-            var anagramCharList = wordArray.GroupBy(x => x)
-                                        .Where(g => g.Count() > 1)
-                                        .ToList();
-            if (anagramCharList.Any())
+            int inputMidpoint = (int)Math.Ceiling((double)wordArray.Length / 2);
+            Console.WriteLine($"mid point of string { inputMidpoint }");
+           
+            for(int x = 0; x < inputMidpoint; x++)
             {
-                Console.WriteLine($"Found  possible anagrams for {inputWord}");
-                anagramCharList.ForEach(x => Console.WriteLine($"{x.Key.ToString()} - {x.Count()}"));
-            }
-            else
-            {
-                Console.WriteLine($"No anagrams for {inputWord}");
+                int wordLength = x + 1;
+                var substring = wordArray.Take(wordLength);
+                Console.WriteLine($" substring instance { string.Join("",substring) }");
+                // check for anagram
+                var anagram = wordArray.Skip(wordLength);
+                Console.WriteLine($" anagram container to check { string.Join("", anagram) }");
+                // use set operations to check 
+                var intersect = wordArray.Intersect(substring);
+                Console.WriteLine($" anagram intersction check { string.Join(",", intersect) }");
+
+
             }
 
-                    
-                    //
-            
 
-            
+
+            //var anagramCharList = wordArray.GroupBy(x => x)
+            //                            .Where(g => g.Count() > 1)
+            //                            .ToList();
+            //if (anagramCharList.Any())
+            //{
+            //    Console.WriteLine($"Found  possible anagrams for {inputWord}");
+            //    anagramCharList.ForEach(x => Console.WriteLine($"{x.Key.ToString()} - {x.Count()}"));
+            //}
+            //else
+            //{
+            //    Console.WriteLine($"No anagrams for {inputWord}");
+            //}
+
+
+            //
+
+
+
         }
 
 
