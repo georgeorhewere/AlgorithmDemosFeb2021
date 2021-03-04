@@ -17,15 +17,9 @@ namespace AlgorithmDemosFeb2021
 
         public void getNumberOfAnagrams(string inputWord)
         {
-
-            var wordArray = inputWord.ToCharArray();
-            var duplicateChars = wordArray.GroupBy(x => x).Where(g => g.Count() > 1);
             int count = 0;
-
-            // check if there is possibility of an anagram
-            //int anagramCount = 0;
-            Console.WriteLine($"input : { inputWord }");
-
+            // check if there is possibility of an anagram          
+            
             for (int i = 1; i < inputWord.Length; i++)
             {
                 Dictionary<string, int> found = new Dictionary<string, int>();
@@ -33,7 +27,7 @@ namespace AlgorithmDemosFeb2021
                 for (int j = 0; j + i <= inputWord.Length; j++)
                 {
                     string substr = inputWord.Substring(j, i);
-                    var splitArr = substr.Split("");
+                    var splitArr = substr.ToCharArray();
                     Array.Sort(splitArr);
                     substr = string.Join("", splitArr);
                     if (found.ContainsKey(substr))
@@ -46,11 +40,10 @@ namespace AlgorithmDemosFeb2021
                         found.Add(substr, 1);
                     }
                 }
-
-                Console.WriteLine($"");
+                
             }
 
-            Console.WriteLine($" anagram count { count }");
+            // Console.WriteLine($" anagram count { count }");
 
 
         }
