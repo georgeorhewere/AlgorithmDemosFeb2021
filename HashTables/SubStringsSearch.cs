@@ -15,35 +15,38 @@ namespace AlgorithmDemosFeb2021
 
 
 
-        public void getNumberOfAnagrams(string inputWord)
+        public int getNumberOfAnagrams(string inputWord)
         {
+
             int count = 0;
-            // check if there is possibility of an anagram          
             
+
             for (int i = 1; i < inputWord.Length; i++)
             {
                 Dictionary<string, int> found = new Dictionary<string, int>();
-                // Starting index of our sliding window
+
                 for (int j = 0; j + i <= inputWord.Length; j++)
                 {
-                    string substr = inputWord.Substring(j, i);
-                    var splitArr = substr.ToCharArray();
+                    string subStringCheck = inputWord.Substring(j, i);
+                    char[] splitArr = subStringCheck.ToCharArray();
                     Array.Sort(splitArr);
-                    substr = string.Join("", splitArr);
-                    if (found.ContainsKey(substr))
+
+                    subStringCheck = string.Join("", splitArr);
+
+                    if (found.ContainsKey(subStringCheck))
                     {
-                        count += found[substr];
-                        found[substr]++;
+                        count += found[subStringCheck];
+                        found[subStringCheck]++;
                     }
                     else
                     {
-                        found.Add(substr, 1);
+                        found.Add(subStringCheck, 1);
                     }
-                }
-                
-            }
+                    
 
-            // Console.WriteLine($" anagram count { count }");
+                }
+            }
+            return count;
 
 
         }

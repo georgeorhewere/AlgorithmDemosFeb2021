@@ -8,6 +8,9 @@ namespace AlgorithmDemosFeb2021
         static void Main(string[] args)
         {
             Console.WriteLine("Algorithm Tetst");
+
+            
+
             testAnagramsAlgorithm();
             //testRansomNote();
             //readRansomFromFile();
@@ -56,14 +59,14 @@ namespace AlgorithmDemosFeb2021
         {
             SubStringsSearch manager = new SubStringsSearch();
             string inputWord = "abba";
-            manager.getNumberOfAnagrams(inputWord);
-            Console.WriteLine();
+            int result = manager.getNumberOfAnagrams(inputWord);
+            Console.WriteLine($"number of anagrams: {result}");
             inputWord = "abcd";
-            manager.getNumberOfAnagrams(inputWord);
-            Console.WriteLine();
+            result = manager.getNumberOfAnagrams(inputWord);
+            Console.WriteLine($"number of anagrams: {result}");
             inputWord = "kkkk";
-            manager.getNumberOfAnagrams(inputWord);
-            
+            result = manager.getNumberOfAnagrams(inputWord);
+            Console.WriteLine($"number of anagrams: {result}");
 
 
         }
